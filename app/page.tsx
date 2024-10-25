@@ -1,6 +1,6 @@
 import Image from "next/image";
 import GlassIMG from "../public/glass.png";
-import QRCodeGenerator from "./components/QRCodeGenerator/QRCodeGenerator";
+import QRCodeGenerator from "../components/ui/QRCodeGenerator";
 
 const Home = () => {
   return (
