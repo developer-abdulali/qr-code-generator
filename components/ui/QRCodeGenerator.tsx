@@ -15,8 +15,6 @@ function QrCodeGenerator() {
   const [url, setUrl] = useState("");
   const [color, setColor] = useState("#ffffff");
   const [bgColor, setBgColor] = useState("#057FFF");
-  const [logo, setLogo] = React.useState<string | null>(null);
-  const [logoFile, setLogoFile] = useState<File | null>(null);
   const [qrType, setQrType] = useState("link");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -153,7 +151,7 @@ function QrCodeGenerator() {
                       />
                     </div>
                     <Button
-                      className=" bg-[#057FFF] font-bold rounded-full uppercase"
+                      className="bg-[#057FFF] font-bold rounded-full uppercase"
                       onClick={handleEmailInput}
                     >
                       Generate Email QR Code
@@ -207,79 +205,46 @@ function QrCodeGenerator() {
                       >
                         <input
                           type="color"
-                          value={color}
+                          value={bgColor}
                           onChange={(e) => setBgColor(e.target.value)}
                           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                         />
                       </div>
                       <Input
                         type="text"
-                        value={color}
+                        value={bgColor}
                         onChange={(e) => setBgColor(e.target.value)}
                         className="flex-1 border-2 h-12 bg-transparent  border-white/70 focus:border-[#057FFF]/70 rounded-md outline-none focus-visible:ring-0 placeholder:text-gray-400"
                       />
                     </div>
                   </div>
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="logo" className="font-bold text-[#037FFF]">
-                    Logo
-                  </Label>
-
-                  <Input
-                    type="file"
-                    id="logo"
-                    accept="image/*"
-                    onChange={(e: any) => {
-                      if (e.target.files && e.target.files[0]) {
-                        setLogoFile(e.target.files[0]);
-
-                        const reader = new FileReader();
-                        reader.onloadend = () => {
-                          setLogo(reader.result as string);
-                        };
-                        reader.readAsDataURL(e.target.files[0]);
-                      }
-                    }}
-                    className="w-full border-2 bg-transparent  border-white/70 focus:border-[#057FFF]/70 rounded-md outline-none focus-visible:ring-0 placeholder:text-gray-400"
-                  />
-                </div>
               </div>
             </div>
-            {/* qr */}
+            {/* QR Code Display */}
             <div className="relative flex-1 bg-[#037FFF] rounded-lg flex flex-col justify-center space-y-6">
               <div id="qr-code" className="flex justify-center p-8">
-                <div className="relative">
-                  <QRCodeSVG
-                    value={url}
-                    size={256}
-                    fgColor={color}
-                    bgColor={bgColor}
-                    imageSettings={
-                      logo
-                        ? { src: logo, height: 50, width: 50, excavate: true }
-                        : undefined
-                    }
-                  />
-
-                  {logo && (
-                    <img
-                      src={logo}
-                      alt="logo"
-                      className="absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-md border-none"
-                    />
-                  )}
-                </div>
+                <QRCodeSVG
+                  value={url}
+                  size={256}
+                  fgColor={color}
+                  bgColor={bgColor}
+                />
               </div>
-              <div className="flex justify-center space-x-2 md:space-x-4 pb-6">
-                <Button variant="outline" onClick={() => handleDownload("png")}>
-                  <Download className="hidden md:flex w-4 h-4 md:mr-2" />
-                  Download PNG
+              <div className="flex justify-center space-x-2 md:space-x-4">
+                <Button
+                  onClick={() => handleDownload("png")}
+                  className="flex items-center bg-white text-black font-bold  uppercase"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  PNG
                 </Button>
-                <Button variant="outline" onClick={() => handleDownload("svg")}>
-                  <Download className="hidden md:flex w-4 h-4 mr-2" />
-                  Download SVG
+                <Button
+                  onClick={() => handleDownload("svg")}
+                  className="flex items-center bg-white text-black font-bold  uppercase"
+                >
+                  <LayoutGrid className="w-4 h-4 mr-2" />
+                  SVG
                 </Button>
               </div>
             </div>
