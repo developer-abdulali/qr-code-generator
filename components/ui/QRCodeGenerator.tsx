@@ -153,7 +153,7 @@ function QrCodeGenerator() {
                       />
                     </div>
                     <Button
-                      className="py-7 px-8 bg-[#057FFF] font-bold rounded-full uppercase"
+                      className=" bg-[#057FFF] font-bold rounded-full uppercase"
                       onClick={handleEmailInput}
                     >
                       Generate Email QR Code
@@ -247,11 +247,8 @@ function QrCodeGenerator() {
                 </div>
               </div>
             </div>
+            {/* qr */}
             <div className="relative flex-1 bg-[#037FFF] rounded-lg flex flex-col justify-center space-y-6">
-              <span>
-                <LayoutGrid className="w-8 h-8 text-white absolute top-4 right-4" />
-              </span>
-
               <div id="qr-code" className="flex justify-center p-8">
                 <div className="relative">
                   <QRCodeSVG
