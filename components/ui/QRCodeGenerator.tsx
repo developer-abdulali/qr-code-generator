@@ -234,14 +234,14 @@ function QrCodeGenerator() {
               <div className="flex justify-center space-x-2 md:space-x-4">
                 <Button
                   onClick={() => handleDownload("png")}
-                  className="flex items-center bg-white text-black font-bold  uppercase"
+                  className="flex items-center bg-white text-black font-bold  uppercase hover:text-black hover:bg-white/90"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   PNG
                 </Button>
                 <Button
                   onClick={() => handleDownload("svg")}
-                  className="flex items-center bg-white text-black font-bold  uppercase"
+                  className="flex items-center bg-white text-black font-bold  uppercase hover:text-black hover:bg-white/90"
                 >
                   <LayoutGrid className="w-4 h-4 mr-2" />
                   SVG
